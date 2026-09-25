@@ -93,33 +93,50 @@ void main() {
   int score2 = 0;
   int round = 1;
 
-  print("\n--- Round $round ---");
+  String playagain;
 
-  String move1 = getmove(player1, moves);
+  do {
+    print("\n--- Round $round ---");
 
-  hidemove();
+    String move1 = getmove(player1, moves);
 
-  String move2 = getmove(player2, moves);
+    hidemove();
 
-  print("$player1 chose $move1.");
-  print("$player2 chose $move2.");
+    String move2 = getmove(player2, moves);
 
-  String? winner = decidewinner(player1, player2, move1, move2, moves);
+    print("$player1 chose $move1.");
+    print("$player2 chose $move2.");
 
-  if (winner == null) {
-    print("Result: ${winner ?? "It's a draw!"}");
-  } else {
-    print("Result: $winner wins the round!");
+    String? winner = decidewinner(player1, player2, move1, move2, moves);
 
-    if (winner == player1) {
-      score1++;
+    if (winner == null) {
+      print("Result: ${winner ?? "It's a draw!"}");
     } else {
-      score2++;
-    }
-  }
+      print("Result: $winner wins the round!");
 
-  print(
-    "Score -> $player1: $score1 | "
-    "$player2: $score2",
-  );
+      if (winner == player1) {
+        score1++;
+      } else {
+        score2++;
+      }
+    }
+
+    print(
+      "Score -> $player1: $score1 | "
+      "$player2: $score2",
+    );
+
+    do {
+      stdout.write("Play again? (y/n): ");
+      String? answer = stdin.readLineSync();
+
+      playagain = (answer ?? "").trim().toLowerCase();
+
+      if (playagain != "y" && playagain != "n") {
+        print("Please enter y or n.");
+      }
+    } while (playagain != "y" && playagain != "n");
+
+    round++;
+  } while (playagain == "y");
 }
