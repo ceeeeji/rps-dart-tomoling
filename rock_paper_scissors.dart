@@ -1,26 +1,26 @@
 import 'dart:io';
 
 /// This gets the player's name.
-String getplayername(String player, String othername) {
+String getngalan(String player, String isakangalan) {
   stdout.write("Enter $player name: ");
   String? input = stdin.readLineSync();
 
-  String name = input?.trim() ?? "";
+  String ngalan = input?.trim() ?? "";
 
-  if (name.isEmpty) {
-    name = player;
+  if (ngalan.isEmpty) {
+    ngalan = player;
   }
 
-  if (name.toLowerCase() == othername.toLowerCase()) {
+  if (ngalan.toLowerCase() == isakangalan.toLowerCase()) {
     print("That name is already taken.");
-    return getplayername(player, othername);
+    return getngalan(player, isakangalan);
   }
 
-  return name;
+  return ngalan;
 }
 
 /// This part checks if the player's move is valid or not.
-String? validatemove(String input, List<String> moves) {
+String? balidate(String input, List<String> moves) {
   String move = input.trim().toLowerCase();
 
   if (move.isEmpty) {
@@ -35,13 +35,13 @@ String? validatemove(String input, List<String> moves) {
 }
 
 /// Gets the valid move from the player, if it is invalid it will go back.
-String getmove(String playername, List<String> moves) {
+String kuhaagmove(String moduwa, List<String> moves) {
   while (true) {
-    stdout.write("$playername, enter your move (rock/paper/scissors): ");
+    stdout.write("$moduwa, enter your move (rock/paper/scissors): ");
 
     String? input = stdin.readLineSync();
 
-    String? move = validatemove(input ?? "", moves);
+    String? move = balidate(input ?? "", moves);
 
     if (move != null) {
       return move;
@@ -52,14 +52,14 @@ String getmove(String playername, List<String> moves) {
 }
 
 /// This hides player 1 moves to avoid cheating.
-void hidemove() {
+void tagoan() {
   for (int i = 0; i < 30; i++) {
     print("");
   }
 }
 
 /// This decides who will win the round.
-String? decidewinner(
+String? kinsadaog(
   String player1,
   String player2,
   String move1,
@@ -80,7 +80,7 @@ String? decidewinner(
 }
 
 /// This displays the final score and overall winner.
-void displayfinalscore(String player1, String player2, int score1, int score2) {
+void paynalscore(String player1, String player2, int score1, int score2) {
   print("\n===== FINAL SCORE =====");
   print("$player1: $score1");
   print("$player2: $score2");
@@ -100,29 +100,29 @@ void main() {
 
   print("===== ROCK, PAPER, SCISSORS =====");
 
-  String player1 = getplayername("Player 1", "");
+  String player1 = getngalan("Player 1", "");
 
-  String player2 = getplayername("Player 2", player1);
+  String player2 = getngalan("Player 2", player1);
 
   int score1 = 0;
   int score2 = 0;
   int round = 1;
 
-  String playagain;
+  String duwautro;
 
   do {
     print("\n--- Round $round ---");
 
-    String move1 = getmove(player1, moves);
+    String move1 = kuhaagmove(player1, moves);
 
-    hidemove();
+    tagoan();
 
-    String move2 = getmove(player2, moves);
+    String move2 = kuhaagmove(player2, moves);
 
     print("$player1 chose $move1.");
     print("$player2 chose $move2.");
 
-    String? winner = decidewinner(player1, player2, move1, move2, moves);
+    String? winner = kinsadaog(player1, player2, move1, move2, moves);
 
     if (winner == null) {
       print("Result: ${winner ?? "It's a draw!"}");
@@ -145,14 +145,14 @@ void main() {
       stdout.write("Play again? (y/n): ");
       String? answer = stdin.readLineSync();
 
-      playagain = (answer ?? "").trim().toLowerCase();
+      duwautro = (answer ?? "").trim().toLowerCase();
 
-      if (playagain != "y" && playagain != "n") {
+      if (duwautro != "y" && duwautro != "n") {
         print("Please enter y or n.");
       }
-    } while (playagain != "y" && playagain != "n");
+    } while (duwautro != "y" && duwautro != "n");
 
     round++;
-  } while (playagain == "y");
-  displayfinalscore(player1, player2, score1, score2);
+  } while (duwautro == "y");
+  paynalscore(player1, player2, score1, score2);
 }
