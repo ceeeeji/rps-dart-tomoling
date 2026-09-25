@@ -79,6 +79,21 @@ String? decidewinner(
   }
 }
 
+/// This displays the final score and overall winner.
+void displayfinalscore(String player1, String player2, int score1, int score2) {
+  print("\n===== FINAL SCORE =====");
+  print("$player1: $score1");
+  print("$player2: $score2");
+
+  if (score1 == score2) {
+    print("Overall winner: It's a draw!");
+  } else if (score1 > score2) {
+    print("Overall winner: $player1");
+  } else {
+    print("Overall winner: $player2");
+  }
+}
+
 /// This is responsible for running the game.
 void main() {
   final List<String> moves = ["", "rock", "paper", "scissors"];
@@ -139,4 +154,5 @@ void main() {
 
     round++;
   } while (playagain == "y");
+  displayfinalscore(player1, player2, score1, score2);
 }
