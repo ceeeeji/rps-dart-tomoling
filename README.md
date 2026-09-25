@@ -16,11 +16,11 @@ IMPORTANT!!: Make sure that Dart is installed on your computer.
 Then open the terminal in the project folder and run: "dart rock_paper_scissors.dart"
 
 Features:
-Rock
-Paper   
-Scissors
-Two-player game
-Has replay option
-Able to personalize your name
-Winner, loser, and draw detection
+- Rock
+- Paper   
+- Scissors
+- Two-player game
+- Has replay option
+- Able to personalize your name
+- Winner, loser, and draw detection
 
