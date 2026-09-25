@@ -58,7 +58,28 @@ void hidemove() {
   }
 }
 
-/// This is repsonsible for running the game.
+/// This decides who will win the round.
+String? decidewinner(
+  String player1,
+  String player2,
+  String move1,
+  String move2,
+  List<String> moves,
+) {
+  if (move1 == move2) {
+    return null;
+  } else if (move1 == moves[1] && move2 == moves[3]) {
+    return player1;
+  } else if (move1 == moves[2] && move2 == moves[1]) {
+    return player1;
+  } else if (move1 == moves[3] && move2 == moves[2]) {
+    return player1;
+  } else {
+    return player2;
+  }
+}
+
+/// This is responsible for running the game.
 void main() {
   final List<String> moves = ["", "rock", "paper", "scissors"];
 
@@ -72,6 +93,8 @@ void main() {
   int score2 = 0;
   int round = 1;
 
+  print("\n--- Round $round ---");
+
   String move1 = getmove(player1, moves);
 
   hidemove();
@@ -81,5 +104,22 @@ void main() {
   print("$player1 chose $move1.");
   print("$player2 chose $move2.");
 
-  print("The winner will be implemented in the next version.");
+  String? winner = decidewinner(player1, player2, move1, move2, moves);
+
+  if (winner == null) {
+    print("Result: ${winner ?? "It's a draw!"}");
+  } else {
+    print("Result: $winner wins the round!");
+
+    if (winner == player1) {
+      score1++;
+    } else {
+      score2++;
+    }
+  }
+
+  print(
+    "Score -> $player1: $score1 | "
+    "$player2: $score2",
+  );
 }
