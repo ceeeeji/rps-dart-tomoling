@@ -1,4 +1,5 @@
 Rock, Paper, Scissors in Dart
+
 Student Information
 
 Name: Cee Jay P. Tomoling
@@ -12,10 +13,7 @@ How to Run
 
 IMPORTANT!!: Make sure that Dart is installed on your computer.
 
-Then open the terminal in the project folder and run:
-
-dart rock_paper_scissors.dart
-
+Then open the terminal in the project folder and run: "dart rock_paper_scissors.dart"
 
 Features:
 Rock
